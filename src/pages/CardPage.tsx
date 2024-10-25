@@ -1,14 +1,19 @@
-import React from "react";
 import CardContainer from "../components/CardContainer";
-import CardForm from "../components/CardForm";
+import MainWrap from "../components/MainWrap";
 
 const CardPage = () => {
   return (
-    <div>
+    <MainWrap>
       <h1>Card - Page</h1>
-      <CardContainer />
-      <CardForm />
-    </div>
+      <div>
+        <p>Active:</p>
+        <CardContainer showActive={true} />
+      </div>
+      <div>
+        <p>Inactive:</p>
+        <CardContainer showActive={false} />
+      </div>
+    </MainWrap>
   );
 };
 

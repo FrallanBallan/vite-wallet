@@ -17,30 +17,22 @@ const Card: React.FC<CardProps> = ({
   bankName,
   active,
 }) => {
-  const { deleteCard } = useCardContext();
   const navigate = useNavigate();
+  //handleClick - navigates to "http://localhost:5173/card/1729238759462"
   const handleClick = () => {
     navigate(`/card/${id}`);
   };
-  const handleDelete = () => {
-    //!! deleteCard(id)
-    deleteCard({ id, cardNumber, cardHolder, bankName, active });
-  };
+
   return (
     <div
-      className="flex flex-col border border-green items-center p-6 gap-4 rounded-lg bg-sky-300"
+      className=" flex flex-col justify-between w-full max-w-sm h-[200px] bg-gradient-to-r from-[#E0F2FE] to-[#A0D6E8] text-gray-800 bg-opacity-80 p-6 rounded-lg shadow-lg  hover:shadow-xl hover:bg-opacity-400 cursor-pointer"
       onClick={handleClick}
     >
       <p>id: {id}</p>
       <h3>Card Owner: {cardHolder}</h3>
       <p>Bank: {bankName}</p>
       <p>Card Number: {cardNumber}</p>
-      <div className="flex w-full justify-between">
-        <button className="grow bg-red-300" onClick={handleDelete}>
-          Delete
-        </button>
-        <button className="grow bg-blue-300">Edit</button>
-      </div>
+      {active ? <p>Active Card</p> : <p>Inactive Card</p>}
     </div>
   );
 };

@@ -15,6 +15,8 @@ interface CardContextType {
   addCard: (card: Card) => void; //Void represents absence of a value
   //The intention is a side effect, adding a card, not producing a result
   deleteCard: (card: Card) => void;
+  editCard: (card: Card) => void; //Takes card as parameter of the type Card. then performes side effect
+  activateCard: (card: Card) => void;
 }
 
 //Creating the actual context, initialized as undefined
@@ -39,20 +41,40 @@ export const CardProvider: React.FC<{ children: ReactNode }> = ({
     return storedCards ? JSON.parse(storedCards) : [];
   }); //This stores the cards in state
 
+  //ADD
   //The function that adds and pushes new card to array
   const addCard = (card: Card) => {
     const newCards = [...cards, card];
     setCards(newCards);
     localStorage.setItem("cards", JSON.stringify(newCards));
   };
+  //DELETE
   //!! const deleteCard = (id: number) => { setCards((prevCards) => prevcards.filter((card) => card.id !== id))}
   const deleteCard = (cardToDelete: Card) => {
     const newCards = cards.filter((card) => card.id !== cardToDelete.id);
     setCards(newCards);
     localStorage.setItem("cards", JSON.stringify(newCards));
   };
+  //EDIT
+  const editCard = (cardToEdit: Card) => {
+    const updatedCards = cards.map((card) =>
+      card.id === cardToEdit.id ? cardToEdit : card
+    );
+    setCards(updatedCards);
+    localStorage.setItem("cards", JSON.stringify(updatedCards));
+  };
+  //ACTIVATE
+  const activateCard = (activeCard: Card) => {
+    const cardToChange = cards.map((card) =>
+      card.id === activeCard.id ? { ...card, active: !card.active } : card
+    );
+    setCards(cardToChange);
+    localStorage.setItem("cards", JSON.stringify(cardToChange));
+  };
   return (
-    <CardContext.Provider value={{ cards, addCard, deleteCard }}>
+    <CardContext.Provider
+      value={{ cards, addCard, deleteCard, editCard, activateCard }}
+    >
       {children}
     </CardContext.Provider>
   );

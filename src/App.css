@@ -1,0 +1,32 @@
+@media (min-width: 768px) {
+  /* md */
+  .responsive-height {
+    height: 90vh; /* Adjust height for medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  /* lg */
+  .responsive-height {
+    height: 90vh; /* Adjust height for large screens */
+  }
+}
+
+@media (min-width: 1280px) {
+  /* xl */
+  .responsive-height {
+    height: 90vh; /* Adjust height for extra large screens */
+  }
+}
+@media (min-width: 1680px) {
+  /* xl */
+  .responsive-height {
+    height: 90vh; /* Adjust height for extra large screens */
+  }
+}
+@media (min-width: 1920px) {
+  /* xl */
+  .responsive-height {
+    height: 80vh; /* Adjust height for extra large screens */
+  }
+}
